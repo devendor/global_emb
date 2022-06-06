@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sysevent_script_action">
+    <sysevent_script_action action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <condition_script/>
+        <description/>
+        <event_name>x_dete_emb.edded_content_ui_action</event_name>
+        <name>Embedded Content Sync Trigger</name>
+        <order>100</order>
+        <script><![CDATA[/* global DevendorEmbeddedContentSync,gs,event,x_dete_emb */ // eslint-disable-line no-redeclare
+/* eslint eqeqeq:[1,smart],no-undef:1,curly:[1,multi-or-nest,consistent],no-magic-numbers:[0,1,{ignoreArrayIndexes:true}]*/
+(
+  /**
+   * process events from scoped app to crawl content.
+   * @param {object.<event>} event 
+   * @param {object.<DevendorEmbeddedContentSync>} DevendorEmbeddedContentSync 
+   */
+  function(event,DevendorEmbeddedContentSync){
+	var message,r;
+	var log = new x_dete_emb.Logger("Embedded Content Sync Trigger");
+	try {	
+		r = DevendorEmbeddedContentSync.EventDispatcher(event.parm1, event.parm2);
+		message = "Processed event " + [event.name, event.parm1, event.parm2, r].join(", ");
+	} catch (e){
+		message = "Caught error processing event "+[event.name, event.parm1, event.parm2, e.message].join(",");
+	}
+	log.info(message);
+}
+)(event,DevendorEmbeddedContentSync);]]></script>
+        <synchronous>false</synchronous>
+        <sys_class_name>sysevent_script_action</sys_class_name>
+        <sys_created_by>ray.ferguson</sys_created_by>
+        <sys_created_on>2019-08-04 19:10:42</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>2d99cb3ddbcf330098cbde82ca9619b5</sys_id>
+        <sys_mod_count>34</sys_mod_count>
+        <sys_name>Embedded Content Sync Trigger</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Embedded Content Crawler (global)" source="70d34669dbc3330098cbde82ca96190a">70d34669dbc3330098cbde82ca96190a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Embedded Content Crawler (global)">70d34669dbc3330098cbde82ca96190a</sys_scope>
+        <sys_update_name>sysevent_script_action_2d99cb3ddbcf330098cbde82ca9619b5</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2020-11-28 00:48:21</sys_updated_on>
+    </sysevent_script_action>
+</record_update>
